@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 const acoridan = { margin: "5px" };
 
-const title = {
+const header = {
   fontSize: "1rem",
   fontWeight: "800",
   fontFamily: "Arial, Helvetica, sans-serif",
@@ -29,31 +30,38 @@ const content = {
 };
 
 const Acrodian = props => {
-  const [visible, setVisible] = useState(props.expand);
+  const { children, title, onChange, expand } = props;
+  const [visible, setVisible] = useState(expand);
+
   return (
     <div className="acordian" style={{ ...acoridan }}>
       <div
         className="Title"
-        style={{ ...title }}
-        onClick={ev => {
-          setVisible(!visible);
-          if (props.onChange) {
-            props.onChange(visible);
-          }
-        }}
+        style={{ ...header }}
+        onClick={ev => setVisible(!visible)}
       >
-        {props.title}
-        <i className="hook" style={{ ...hook }}>
-          {visible ? ">" : "<"}
-        </i>
+        {title}
+        {children && (
+          <i className="hook" style={{ ...hook }}>
+            {visible ? ">" : "<"}
+          </i>
+        )}
       </div>
-      {visible && (
+      {visible && children && (
         <div className="Content" data-toggle={visible} style={{ ...content }}>
-          {props.children}
+          {children}
         </div>
       )}
     </div>
   );
 };
 
+Acrodian.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired
+};
+
+Acrodian.defaultProps = {
+  title: "Title"
+};
 export default Acrodian;

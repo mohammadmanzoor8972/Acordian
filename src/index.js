@@ -20,9 +20,19 @@ function App() {
       <Acordian title="Health" expand={true}>
         Salary will credit every month of march
       </Acordian>
+      <Acordian>
+        <Bodys />
+        <Acordian title="Finance">I am here</Acordian>
+      </Acordian>
     </>
   );
 }
+
+const Bodys = s => (
+  <div>
+    <strong>Hello</strong> World
+  </div>
+);
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
