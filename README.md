@@ -1,2 +1,0 @@
-# Acordian
-Created with CodeSandbox
