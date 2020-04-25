@@ -7,7 +7,6 @@ function App() {
   return (
     <>
       <div className="App">
-        <h1>Hello Acrodian</h1>
       </div>
       <Acordian title="Profile" expand={true}>
         I am gogin to display multiple attribute
